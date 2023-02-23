@@ -16,7 +16,8 @@
     <br>
     <br>
     <input type="text" value="AuthToken" id="authtoken">
-    <button onclick="getMyEvents()">Get my Events</button>
+    <button onclick="getMyProfil()">My Profil</button>
+    <button onclick="getMyEvents()">My Events</button>
     <br>
     <br>
     <input type="number" value="1" id="evaluation">
@@ -29,125 +30,9 @@
     <p>Console :</p>
     <p id="console"></p>
 </body>
-
-<script>
-    const url_base = 'https://x8ki-letl-twmt.n7.xano.io/api:zs9zXs1v/';
-    let authtoken = null;
-    let email = null;
-    let password = null;
-
-    // GET my Events
-    function getMyEvents() {
-        authtoken = document.getElementById("authtoken").value;
-        fetch(url_base + 'event/me', {
-            headers: {
-                'accept': 'application/json',
-                'Authorization': 'Bearer ' + authtoken
-            }
-        })
-            .then(response => response.text())
-            .then((response) => {
-                document.getElementById("console").innerHTML = response;
-            })
-            .catch(err => console.log(err));
-
-    };
-    // Login
-    function login() {
-        email = document.getElementById("email").value;
-        password = document.getElementById("password").value;
-        fetch(url_base + 'auth/login', {
-            method: 'POST',
-            headers: {
-                'accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                'email': email,
-                'password': password
-            })
-        })
-            .then(response => response.text())
-            .then((response) => {
-                document.getElementById("console").innerHTML = response;
-            })
-            .catch(err => console.log(err));
-
-    };
-
-    // Signup
-    function signup() {
-        pseudo = document.getElementById("pseudo").value;
-        email = document.getElementById("email").value;
-        password = document.getElementById("password").value;
-        fetch(url_base + 'auth/signup', {
-            method: 'POST',
-            headers: {
-                'accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                'pseudo': pseudo,
-                'email': email,
-                'password': password
-            })
-        })
-            .then(response => response.text())
-            .then((response) => {
-                document.getElementById("console").innerHTML = response;
-            })
-            .catch(err => console.log(err));
-
-    };
-
-    // Create Event
-    function createEvent_() {
-        authtoken = document.getElementById("authtoken").value;
-        evaluation = document.getElementById("evaluation").value;
-        special = document.getElementById("special").value;
-        fetch(url_base + 'event/post', {
-            method: 'POST',
-            headers: {
-                'accept': 'application/json',
-                'Authorization': 'Bearer ' + authtoken,
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                'evaluation': evaluation,
-                'special': special,
-                'location': null
-            })
-        })
-            .then(response => response.text())
-            .then((response) => {
-                document.getElementById("console").innerHTML = response;
-            })
-            .catch(err => console.log(err));
-
-    };
-
-    // Add Friend
-    function addFriend() {
-        friend_id = document.getElementById("friend_id").value;
-        fetch(url_base + 'friend/add', {
-            method: 'POST',
-            headers: {
-                'accept': 'application/json',
-                'Authorization': 'Bearer ' + authtoken,
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                'requested': friend_id,
-            })
-        })
-            .then(response => response.text())
-            .then((response) => {
-                document.getElementById("console").innerHTML = response;
-            })
-            .catch(err => console.log(err));
-
-    };
-
-</script>
+<script src="js/init.js"></script>
+<script src="js/authentification.js"></script>
+<script src="js/events.js"></script>
+<script src="js/friends.js"></script>
 
 </html>
