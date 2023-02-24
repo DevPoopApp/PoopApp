@@ -48,7 +48,7 @@ function signup() {
 };
 
 // My Profil
-function getMyProfil() {
+function getMyProfile() {
     authtoken = document.getElementById("authtoken").value;
     fetch(url_base + 'auth/me', {
         headers: {
