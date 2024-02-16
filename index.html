@@ -7,6 +7,9 @@
     <title>Document</title>
 </head>
 
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ol@v8.2.0/ol.css">
+<link rel="stylesheet" href="./css/style.css" type="text/css">
+
 <body>
     <input type="text" value="pseudo" id="pseudo">
     <input type="email" value="Email" id="email">
@@ -20,8 +23,9 @@
     <button onclick="getMyEvents()">My Events</button>
     <br>
     <br>
+    Evaluation
     <input type="number" value="1" id="evaluation">
-    <input type="number" value="1" id="special">
+    <button onclick="getLocation()">My Location</button>
     <button onclick="createEvent_()">Create Event</button>
     <br>
     <br>
@@ -29,10 +33,14 @@
     <button onclick="addFriend()">Add Friend</button>
     <p>Console :</p>
     <p id="console"></p>
+    <div id="map"></div>
 </body>
-<script src="js/init.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/ol@v8.2.0/dist/ol.js"></script>
+<script src="js/localstorage.js"></script>
 <script src="js/authentification.js"></script>
 <script src="js/events.js"></script>
 <script src="js/friends.js"></script>
+<script src="js/localisation.js"></script>
+<script src="js/init.js"></script>
 
 </html>

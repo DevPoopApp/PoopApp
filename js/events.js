@@ -1,7 +1,7 @@
 
 // GET my Events
 function getMyEvents() {
-    authtoken = document.getElementById("authtoken").value;
+    authtoken = localstorage.authToken;
     fetch(url_base + 'event/me', {
         headers: {
             'accept': 'application/json',
@@ -11,6 +11,8 @@ function getMyEvents() {
         .then(response => response.text())
         .then((response) => {
             document.getElementById("console").innerHTML = response;
+            poopapp.myevents = JSON.parse(response);
+            showEventMap(poopapp.myevents)
         })
         .catch(err => console.log(err));
 
@@ -18,9 +20,9 @@ function getMyEvents() {
 
 // Create Event
 function createEvent_() {
-    authtoken = document.getElementById("authtoken").value;
+    authtoken = localstorage.authToken;
     evaluation = document.getElementById("evaluation").value;
-    special = document.getElementById("special").value;
+
     fetch(url_base + 'event/post', {
         method: 'POST',
         headers: {
@@ -30,8 +32,7 @@ function createEvent_() {
         },
         body: JSON.stringify({
             'evaluation': evaluation,
-            'special': special,
-            'location': null
+            'location': loc_4326
         })
     })
         .then(response => response.text())

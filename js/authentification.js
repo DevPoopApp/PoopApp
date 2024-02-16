@@ -17,6 +17,9 @@ function login() {
         .then(response => response.text())
         .then((response) => {
             document.getElementById("console").innerHTML = response;
+            token = JSON.parse(response).authToken;
+            localstorage.authToken = token;
+            saveLocalStorage();
         })
         .catch(err => console.log(err));
 
@@ -42,6 +45,9 @@ function signup() {
         .then(response => response.text())
         .then((response) => {
             document.getElementById("console").innerHTML = response;
+            token = JSON.parse(response).authToken;
+            localstorage.authToken = token;
+            saveLocalStorage();
         })
         .catch(err => console.log(err));
 
@@ -49,7 +55,7 @@ function signup() {
 
 // My Profil
 function getMyProfile() {
-    authtoken = document.getElementById("authtoken").value;
+    authtoken = localstorage.authToken;
     fetch(url_base + 'auth/me', {
         headers: {
             'accept': 'application/json',
